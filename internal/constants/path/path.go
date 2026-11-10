@@ -1,6 +1,7 @@
 package path
 
 const (
-	AuthLoginPath        = "/auth/login"
-	MyAdvertisementsPath = "/my/advertisements"
+	AuthLoginPath         = "/auth/login"
+	MyAdvertisementsPath  = "/my/advertisements"
+	GetAdvertisementsPath = "/advertisements"
 )
