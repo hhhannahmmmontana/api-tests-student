@@ -1,6 +1,7 @@
 package myAdvertisement
 
 import (
+	"api-tests-template/internal/managers/advertisement"
 	"net/http"
 	"os"
 	"testing"
@@ -11,8 +12,6 @@ import (
 
 	"api-tests-template/internal/managers/auth"
 	"api-tests-template/internal/managers/auth/models"
-	"api-tests-template/internal/managers/myAdvertisements"
-
 	base "api-tests-template/tests"
 )
 
@@ -40,7 +39,7 @@ func (s *TestSuite) TearDownSuite() {
 func (s *TestSuite) TestGetMyAdvertisementsPositive() {
 	var advertisementsBody string
 	s.Run("Получаем список собственных объявлений", func() {
-		advertisementsBody = myAdvertisements.GetMyAdvertisements(s.T(), s.loginData.Token, http.StatusOK, 50)
+		advertisementsBody = advertisement.GetMyAdvertisements(s.T(), s.loginData.Token, http.StatusOK, 50)
 	})
 
 	var items gjson.Result
@@ -67,7 +66,7 @@ func (s *TestSuite) TestGetMyAdvertisementsPositive() {
 func (s *TestSuite) TestGetMyAdvertisementsIncorrectToken() {
 	var advertisementsBody string
 	s.Run("Получаем список собственных объявлений с неправильным авторизационным токеном", func() {
-		advertisementsBody = myAdvertisements.GetMyAdvertisements(s.T(), "incorrect_token", http.StatusUnauthorized, 50)
+		advertisementsBody = advertisement.GetMyAdvertisements(s.T(), "incorrect_token", http.StatusUnauthorized, 50)
 	})
 
 	s.Run("Проверяем, что показывается правильная ошибка", func() {

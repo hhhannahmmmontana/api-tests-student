@@ -1,13 +1,13 @@
 package advertisementSearch
 
 import (
-	"api-tests-template/internal/managers/advertisementSearch/models"
+	"api-tests-template/internal/managers/advertisement/models"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
 
-func ContainsAdvertisementByTitle(t *testing.T, items []models.Item, title string) {
+func ContainsAdvertisementByTitle(t *testing.T, items []models.Advertisement, title string) {
 	t.Helper()
 
 	assert.Condition(t, func() bool {

@@ -28,6 +28,13 @@ TEST_LOGIN=your_login
 TEST_PASSWORD=your_password
 ```
 
+Также потребуется
+```
+TEST_FAVOURITES_LOGIN=other_login
+TEST_FAVOURITES_PASSWORD=other_password
+```
+Это необходимо для тестирования избранного. Аккаунты должны различаться
+
 8. Для запуска всех тестов достаточно выполнить команду в корне проекта:
 
 ```bash

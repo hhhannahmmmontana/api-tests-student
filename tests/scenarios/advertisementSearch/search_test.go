@@ -2,8 +2,7 @@ package advertisementSearch
 
 import (
 	asserions "api-tests-template/internal/assertions/advertisementSearch"
-	"api-tests-template/internal/managers/advertisementSearch"
-	"api-tests-template/internal/managers/advertisementSearch/models"
+	"api-tests-template/internal/managers/advertisement"
 	"api-tests-template/internal/utils"
 	base "api-tests-template/tests"
 	"strings"
@@ -22,7 +21,6 @@ const (
 
 type TestSuite struct {
 	suite.Suite
-	searchData models.AdvertisementsList
 }
 
 func TestSuiteRun(t *testing.T) {
@@ -40,7 +38,7 @@ func (s *TestSuite) SetupSuite() {
 }
 
 func (s *TestSuite) TestSearchByTitle() {
-	list := advertisementSearch.GetAdvertisementsList(s.T(), searchMiddle)
+	list := advertisement.SearchAdvertisements(s.T(), searchMiddle)
 
 	s.Run("В ответе есть хотя бы одно объявление", func() {
 		require.NotEmpty(s.T(), list.Items)
@@ -65,7 +63,7 @@ func (s *TestSuite) TestSearchByTitle_Substring() {
 
 	for _, tc := range cases {
 		s.Run(tc.name, func() {
-			list := advertisementSearch.GetAdvertisementsList(s.T(), tc.search)
+			list := advertisement.SearchAdvertisements(s.T(), tc.search)
 			asserions.ContainsAdvertisementByTitle(s.T(), list.Items, existingAdTitle)
 		})
 	}

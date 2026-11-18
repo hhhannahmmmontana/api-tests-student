@@ -6,25 +6,25 @@ import (
 )
 
 type AdvertisementsList struct {
-	Items []Item `json:"items,omitempty"`
+	Items []Advertisement `json:"items,omitempty"`
 }
 
-type Item struct {
+type Advertisement struct {
 	Id          string      `json:"id,omitempty"`
 	Title       string      `json:"title,omitempty"`
 	Description string      `json:"description,omitempty"`
-	Price       int32       `json:"price,omitempty"`
+	Price       float64     `json:"price,omitempty"`
 	Quantity    int32       `json:"quantity,omitempty"`
-	UserId      string      `json:"userId,omitempty"`
+	UserId      string      `json:"user_id,omitempty"`
 	User        models.User `json:"user,omitempty"`
 	CreatedAt   time.Time   `json:"created_at,omitempty"`
 	UpdatedAt   time.Time   `json:"updated_at,omitempty"`
-	Photos      []Photos    `json:"photos,omitempty"`
+	Photos      []Photo     `json:"photos,omitempty"`
 }
 
-type Photos struct {
+type Photo struct {
 	Id              string    `json:"id,omitempty"`
-	AdvertisementId string    `json:"advertisementId,omitempty"`
+	AdvertisementId string    `json:"advertisement_id,omitempty"`
 	Url             string    `json:"url,omitempty"`
 	SortOrder       int32     `json:"sort_order,omitempty"`
 	CreatedAt       time.Time `json:"created_at,omitempty"`
