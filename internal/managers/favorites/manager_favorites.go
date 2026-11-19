@@ -11,7 +11,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func AddFavorite(t *testing.T, token, id string) models.Favorite {
+func AddFavorite(t *testing.T, token string, id string) models.Favorite {
 	raw := client.HttpCreateFavorite(t, token, id)
 	defer raw.Body.Close()
 	body, err := io.ReadAll(raw.Body)
@@ -22,7 +22,7 @@ func AddFavorite(t *testing.T, token, id string) models.Favorite {
 	return resp
 }
 
-func GetLastFavorite(t *testing.T, token string) models.Favorite {
+func GetLastFavorite(t *testing.T, token string) (models.Favorite, bool) {
 	raw := client.HttpGet10LastFavorites(t, token)
 	defer raw.Body.Close()
 	body, err := io.ReadAll(raw.Body)
@@ -30,7 +30,10 @@ func GetLastFavorite(t *testing.T, token string) models.Favorite {
 
 	resp := models.GetFavoritesResponse{}
 	require.NoError(t, json.Unmarshal(body, &resp))
-	return resp.Items[0]
+	if len(resp.Items) == 0 {
+		return models.Favorite{}, false
+	}
+	return resp.Items[0], true
 }
 
 func DeleteFavorite(t *testing.T, token, id string) {

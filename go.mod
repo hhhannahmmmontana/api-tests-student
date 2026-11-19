@@ -7,6 +7,7 @@ require (
 	github.com/steinfletcher/apitest v1.6.0
 	github.com/stretchr/testify v1.11.1
 	github.com/tidwall/gjson v1.18.0
+	github.com/google/uuid v1.6.0
 )
 
 require (

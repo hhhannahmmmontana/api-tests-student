@@ -7,8 +7,8 @@ import (
 
 type Favorite struct {
 	AddedAt       time.Time            `json:"added_at"`
-	Advertisement models.Advertisement `json:"createAdvertisement"`
-	FavouriteId   string               `json:"favourite_id"`
+	Advertisement models.Advertisement `json:"advertisement"`
+	FavouriteId   string               `json:"favorite_id"`
 }
 
 type GetFavoritesResponse struct {
